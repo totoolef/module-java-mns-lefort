@@ -1,5 +1,7 @@
 package com.tlefort;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -7,25 +9,21 @@ public class Main {
         System.out.println("What's your name ?");
         Scanner input = new Scanner(System.in);
         String name = input.nextLine();
-        System.out.println("Hello, " + name);
+        User user = new User(name);
+        System.out.println("Hello, " + user.getFirstName());
 
-        String[] tasks2 = new String[]{"test2", "test3","test4", "test5"};
+        List<Task> tasks = new ArrayList<>();
 
-        for (String task : tasks2) {
-            System.out.println(task);
+        for (int i = 0; i < 10; i++) {
+            Task task = new Task("Task_"+i, "TEST", false, user);
+            tasks.add(task);
         }
 
-        String[] tasks3 = new String[tasks2.length+1];
-        System.arraycopy(tasks2, 0, tasks3, 0, tasks2.length);
-        System.out.println("Ajouter une tache");
-        String task = input.nextLine();
-        input.close();
-
-        tasks3[tasks3.length-1] = task;
-
-        for (String t: tasks3) {
+        for (Task t : tasks) {
             System.out.println(t);
         }
+
+        input.close();
 
     }
 }
